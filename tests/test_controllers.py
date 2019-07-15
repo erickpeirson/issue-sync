@@ -17,6 +17,7 @@ class TestIssuesEventEdited(TestCase):
         with open(self.EXAMPLE) as f:
             self.data = json.load(f)
 
+    @mock.patch(f'{controllers.__name__}.current_app', mock.MagicMock())
     @mock.patch(f'{controllers.__name__}.database')
     @mock.patch(f'{controllers.__name__}.jira')
     def test_handle_event(self, mock_jira, mock_database):

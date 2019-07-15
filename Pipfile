@@ -17,6 +17,9 @@ jira = "*"
 pygithub = "*"
 backports-datetime-fromisoformat = "*"
 pytz = "*"
+arxiv-base = "*"
+arxiv-vault = "==0.1.1rc15"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.6"

@@ -111,7 +111,7 @@ class _IssueType(TypedDict):
 
 
 class _JiraStatus(TypedDict):
-    id: int
+    id: str
 
 
 class JiraIssue(TypedDict):
@@ -145,11 +145,17 @@ def is_gh_comment_event(gh_event: GithubEvent) -> bool:
 
 
 def is_gh_update_event(gh_event: GithubEvent) -> bool:
-    return bool(not gh_event['event_type'].name.endswith('_create'))
+    return bool(not gh_event['event_type'].name.endswith('_created')
+                and not gh_event['event_type'].name.endswith('_opened'))
 
 
 def is_creation_event(jira_event) -> bool:
     return bool(jira_event['event_type'].value.endswith('_create'))
+
+
+def is_gh_creation_event(gh_event) -> bool:
+    return bool(gh_event['event_type'].name.endswith('_created')
+                or gh_event['event_type'].name.endswith('_opened'))
 
 
 def is_update_event(jira_event) -> bool:

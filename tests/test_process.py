@@ -19,10 +19,10 @@ class TestIssuesEventEdited(TestCase):
         self.event = parse_github_event(domain.GithubEventType.IssuesEvent,
                                         self.data)
 
-    def test_translate_event(self):
+    def test_translate(self):
         """Translate the Github event."""
         issue_key = 'ARXIVNG-1234'
-        jira_event = process.translate_event(self.event, issue_key=issue_key)
+        jira_event = process.translate(self.event, issue_key=issue_key)
         self.assertIsNotNone(jira_event, 'Triggers a Jira event')
         self.assertEqual(jira_event['event_type'],
                          domain.JiraEventType.issue_update,

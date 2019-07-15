@@ -1,0 +1,33 @@
+namespace: development
+deployment:
+  name: issue-sync
+service:
+  name: issue-sync
+image:
+  name: "arxiv/issue-sync"
+  tag: "0.0"
+labels:
+  subsystem: infrastructure
+
+authenticator:
+  service: authenticator
+
+scaling:
+  replicas: 1
+
+vault:
+  host: changeme
+  port: changeme
+  role: issue-sync
+
+database:
+  host: changeme
+
+loglevel: 10
+
+ingress:
+  host: "development.arxiv.org"
+  path: "/issue-sync"
+
+jira:
+  endpoint: changeme
